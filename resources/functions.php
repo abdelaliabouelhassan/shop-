@@ -81,7 +81,7 @@
                
                 <p>{$row['product_discription']}</p>
                 
-                <a class="btn btn-primary" target="_blank" href="item.php?id={$row['products_id']}">Add to cart</a>
+                <a class="btn btn-primary" target="_blank" href="cart.php?add={$row['products_id']}">Add to cart</a>
             </div>
             
         </div>
@@ -179,6 +179,7 @@ if($username== $row['user_name'] && $password == $row['password']){
     redairect(admin);
    
 }
+
 
 endwhile;
 endif;
