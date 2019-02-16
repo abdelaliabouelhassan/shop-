@@ -6,6 +6,11 @@ require_once("../resources/config.php");
     <!-- Page Content -->
     <div class="container">
 
+<?php if(isset($_SESSION['product_1'])){
+    echo $_SESSION['product_1'];
+    echo $_SESSION['product_2'];
+}
+?>
 
 <!-- /.row --> 
 
@@ -25,13 +30,7 @@ require_once("../resources/config.php");
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>apple</td>
-                <td>$23</td>
-                <td>3</td>
-                <td>2</td>
-              
-            </tr>
+           <?php cart();?>
         </tbody>
     </table>
 </form>
