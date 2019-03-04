@@ -177,6 +177,7 @@ function log_users(){
     $password=escape_string($_POST['password']);
 if($username== $row['user_name'] && $password == $row['password']){
     redairect(admin);
+    $_SESSION['username']=$username;
    
 }
 
@@ -205,56 +206,27 @@ function send_msg(){
 }///end function
 
 
-////hadi function dyal katjm3 liya   product dyal nass bhal sla dyal jumia 
-function cart(){
-   
 
-    foreach ($_SESSION as $name => $value) {
+function pay_button(){
 
-    if($value > 0){
-        
-    
+    if(isset($_SESSION['item_quenty']) && $_SESSION['item_quenty']>=1){
+$pay = <<<DELIMETER
 
-         if(substr($name,0,8)== "product_"){
+<input type="image" name="submit"
+src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+alt="PayPal - The safer, easier way to pay online">
 
-         $lenght = strlen($name);
-
-         $id = substr($name ,8,$lenght);
-            
-            $query = query("SELECT * FROM products WHERE products_id=" . escape_string($id) . "");
-            confirm($query);
-          
-            while($row = fetch_array($query)){
-              $product = <<<DELIMETER
-                 
-                <tr>
-                <td>{$row['product_title']}</td>
-                <td>&#36;{$row['product_price']}</td>
-                <td>{$row['product_quantity']}</td>
-                <td>2</td>
-                <td><a class="btn btn-success" href="cart.php?add={$row['products_id']}"><span class='glyphicon glyphicon-plus'></span></a>
-                <a class="btn btn-warning" href="cart.php?remove={$row['products_id']}"><span class='glyphicon glyphicon-minus'></span></a>
-                <a class="btn btn-danger" href="cart.php?delete={$row['products_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
-              
-            </tr>
-          
 DELIMETER;
-          echo $product;
-            }
-          
-
-         }
+return  $pay;
     }
-
-}
-  
-
-  
-
-
 }
 
 
+////hadi function dyal katjm3 liya   product dyal nass bhal sla dyal jumia 
+
+
+
+   
 
 
 

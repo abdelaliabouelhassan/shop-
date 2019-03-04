@@ -2,23 +2,23 @@
 require_once("../resources/config.php");
 ?>
 <?php include("../resources/templates/front/header.php");?>
+<?php include("cart.php");?>
 
     <!-- Page Content -->
     <div class="container">
 
-<?php if(isset($_SESSION['product_1'])){
-    echo $_SESSION['product_1'];
-    echo $_SESSION['product_2'];
-}
-?>
+
 
 <!-- /.row --> 
 
 <div class="row">
  <h4 class="text-center bg-danger"><?php display_msg();?></h4>
       <h1>Checkout</h1>
-
-<form action="">
+      
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+  <input type="hidden" name="cmd" value="_cart">
+  <input type="hidden" name="business" value="gameon@support.com">
+  <input type="hidden" name="country" value="US">
     <table class="table table-striped">
         <thead>
           <tr>
@@ -26,13 +26,13 @@ require_once("../resources/config.php");
            <th>Price</th>
            <th>Quantity</th>
            <th>Sub-total</th>
-     
           </tr>
         </thead>
         <tbody>
            <?php cart();?>
         </tbody>
     </table>
+    <?php echo pay_button()?>
 </form>
 
 
@@ -46,7 +46,7 @@ require_once("../resources/config.php");
 
 <tr class="cart-subtotal">
 <th>Items:</th>
-<td><span class="amount">4</span></td>
+<td><span class="amount"><?php echo isset($_SESSION['item_quenty']) ? $_SESSION['item_quenty'] : $_SESSION['item_quenty']="0";?></span></td>
 </tr>
 <tr class="shipping">
 <th>Shipping and Handling</th>
@@ -55,7 +55,7 @@ require_once("../resources/config.php");
 
 <tr class="order-total">
 <th>Order Total</th>
-<td><strong><span class="amount">$3444</span></strong> </td>
+<td><strong><span class="amount">&#36;<?php echo isset($_SESSION['total_item']) ? $_SESSION['total_item'] : $_SESSION['total_item']="0";?></span></strong> </td>
 </tr>
 
 
@@ -73,3 +73,18 @@ require_once("../resources/config.php");
 
         <!-- Footer -->
         <?php include("../resources/templates/front/footer.php")?>
+
+
+
+
+        
+
+  
+  
+ 
+ 
+
+
+
+        
+  
